@@ -10,6 +10,7 @@ export function Home() {
             <View style={styles.topBar}>
                 <Logo />
             </View>
+
             <View style={styles.form}>
                 <TextInput
                     placeholder="Adicione uma nova tarefa"
@@ -20,21 +21,25 @@ export function Home() {
                     <Add />
                 </TouchableOpacity>
             </View>
+
             <View style={styles.content}>
+
                 <View style={styles.count}>
-                    <View style={styles.create}>
-                        <Text style={{ color: '#808080' }}> Criadas </Text>
-                        <TouchableOpacity>
-                            <Text>2</Text>
+                    <View style={styles.visor}>
+                        <Text style={styles.create}> Criadas </Text>
+                        <TouchableOpacity style={styles.visorCount}>
+                            <Text style={styles.visorCounttext}>2</Text>
                         </TouchableOpacity>
                     </View>
-                    <View style={styles.create}>
-                        <Text style={{ color: '#808080' }}> concluídas </Text>
-                        <TouchableOpacity>
-                            <Text>2</Text>
+
+                    <View style={styles.visor}>
+                        <Text style={styles.finished}> Concluídas </Text>
+                        <TouchableOpacity style={styles.visorCount}>
+                            <Text style={styles.visorCounttext}>2</Text>
                         </TouchableOpacity>
                     </View>
                 </View>
+                <View style={styles.div}></View>
             </View>
         </View>
     );
