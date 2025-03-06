@@ -16,8 +16,9 @@ export const styles = StyleSheet.create({
         fontFamily: fontFamily.regular,
         fontSize: fontSize.medium,
         color: colors.base.gray100,
+        justifyContent: "center",
     },
     check: {
-        padding: 25,
+        padding: 50,
     }
 });

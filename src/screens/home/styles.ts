@@ -80,5 +80,14 @@ export const styles = StyleSheet.create({
         height: 1,
         backgroundColor: colors.base.gray400,
         marginTop: 20,
+    },
+    empty: {
+    },
+    empttboard: {
+        marginTop: 48,
+        alignSelf: "center",
+    },
+    emptyText: {
+        alignSelf: "center",
     }
 });

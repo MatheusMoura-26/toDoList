@@ -2,8 +2,10 @@ import { Text, TextInput, TouchableOpacity, View, FlatList, Alert } from "react-
 import { styles } from "./styles";
 import Logo from "../../../assets/logo.svg";
 import Add from "../../../assets/add.svg";
+import Board from "../../../assets/clipboard.svg";
 import { Task } from "../../components/task";
 import { useState } from "react";
+import { colors } from "../../../styles/theme";
 
 export function Home() {
     const [tasks, setTasks] = useState<string[]>([]);
@@ -50,7 +52,7 @@ export function Home() {
                 <TextInput
                     placeholder="Adicione uma nova tarefa"
                     style={styles.input}
-                    placeholderTextColor="#808080"
+                    placeholderTextColor={colors.base.gray300}
                     onChangeText={setTaskName}
                     value={TaskName}
                 />
@@ -89,6 +91,14 @@ export function Home() {
                         />
                     )}
                     showsVerticalScrollIndicator={false}
+                    ListEmptyComponent={() => (
+                        <View style={styles.empty}>
+                            <View style={styles.div}></View>
+                            <Board style={styles.empttboard} />
+                            <Text style={{ color: colors.base.gray300, alignSelf: 'center', marginTop: 16 }}>Você ainda não tem tarefas cadastradas{"\n"}
+                                Crie tarefas e organize seus itens a fazer</Text>
+                        </View>
+                    )}
                 />
             </View>
         </View>
