@@ -51,6 +51,7 @@ export const styles = StyleSheet.create({
     visor: {
         flexDirection: "row",
         alignItems: "center",
+        marginBottom: 20,
     },
     create: {
         color: colors.product.blue,
