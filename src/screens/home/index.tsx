@@ -5,32 +5,41 @@ import Add from "../../../assets/add.svg";
 import { Task } from "../../components/task";
 import { useState } from "react";
 
-
 export function Home() {
     const [tasks, setTasks] = useState<string[]>([]);
     const [TaskName, setTaskName] = useState<string>("");
     const [count, setCount] = useState<number>(0);
+    const [completedTasks, setCompletedTasks] = useState<string[]>([]);
+
     function handleAddTask() {
         if (tasks.includes(TaskName)) {
             return Alert.alert("Tarefa já cadastrada");
         }
         setTasks(prevState => [...prevState, TaskName]);
-        setCount(count + 1);
         setTaskName("");
     }
+
     function handleRemoveTask(name: string) {
-        Alert.alert(
-            "Remover tarefa", `Deseja remover a  tarefa ${name}?`, [{
-                text: 'sim',
+        Alert.alert("Remover tarefa", `Deseja remover a tarefa ${name}?`, [
+            {
+                text: 'Sim',
                 onPress: () => {
                     setTasks(prevState => prevState.filter(task => task !== name));
+                    setCompletedTasks(prevState => prevState.filter(task => task !== name));
                 }
             },
-            {
-                text: 'não',
-                style: 'cancel'
-            }])
+            { text: 'Não', style: 'cancel' }
+        ]);
     }
+
+    function handleToggleTask(name: string) {
+        if (completedTasks.includes(name)) {
+            setCompletedTasks(prevState => prevState.filter(task => task !== name));
+        } else {
+            setCompletedTasks(prevState => [...prevState, name]);
+        }
+    }
+
     return (
         <View style={styles.container}>
             <View style={styles.topBar}>
@@ -51,27 +60,33 @@ export function Home() {
             </View>
 
             <View style={styles.content}>
-
                 <View style={styles.count}>
                     <View style={styles.visor}>
-                        <Text style={styles.create}> Criadas </Text>
+                        <Text style={styles.create}>Criadas</Text>
                         <TouchableOpacity style={styles.visorCount}>
-                            <Text style={styles.visorCounttext}>{count}</Text>
+                            <Text style={styles.visorCounttext}>{tasks.length}</Text>
                         </TouchableOpacity>
                     </View>
 
                     <View style={styles.visor}>
-                        <Text style={styles.finished}> Concluídas </Text>
+                        <Text style={styles.finished}>Concluídas</Text>
                         <TouchableOpacity style={styles.visorCount}>
-                            <Text style={styles.visorCounttext}>2</Text>
+                            <Text style={styles.visorCounttext}>{completedTasks.length}</Text>
                         </TouchableOpacity>
                     </View>
                 </View>
+
                 <FlatList
                     data={tasks}
                     keyExtractor={item => item}
                     renderItem={({ item }) => (
-                        <Task key={item} name={item} onremove={() => handleRemoveTask(item)} />
+                        <Task
+                            key={item}
+                            name={item}
+                            onremove={() => handleRemoveTask(item)}
+                            onToggle={() => handleToggleTask(item)}
+                            checked={completedTasks.includes(item)}
+                        />
                     )}
                     showsVerticalScrollIndicator={false}
                 />

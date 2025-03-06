@@ -7,7 +7,7 @@ export const styles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: "center",
-        paddingHorizontal: 16,
+        paddingHorizontal: 10,
         height: 64,
         borderRadius: 10,
         marginBottom: 16,
@@ -16,5 +16,8 @@ export const styles = StyleSheet.create({
         fontFamily: fontFamily.regular,
         fontSize: fontSize.medium,
         color: colors.base.gray100,
+    },
+    check: {
+        padding: 25,
     }
 });
